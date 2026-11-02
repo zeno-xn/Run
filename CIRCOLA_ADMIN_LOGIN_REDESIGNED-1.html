@@ -1,0 +1,1268 @@
+<!-- ================= PART 1 OF 5: HEAD & COMPLETE LUXURY CSS STYLESHEET ================= -->
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CIRCOLA - Administrator Web Panel</title>
+  <meta name="description" content="CIRCOLA Luxury Virtual Horology - Administrator Control Panel & Master Financial Ledger">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #0B0B0D;
+      --bg-surface: #19191D;
+      --bg-secondary: #222228;
+      --bg-elevated: #131316;
+      --border-color: #222228;
+      --border-subtle: #2d2d35;
+      --gold: #D4AF69;
+      --gold-hover: #e0bc77;
+      --gold-dim: rgba(212, 175, 105, 0.15);
+      --text-main: #F5F0E6;
+      --text-muted: #AAA6A0;
+      --text-dim: #75716b;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --error: #ef4444;
+      --cyan: #06b6d4;
+      --blue: #3b82f6;
+      --purple: #a855f7;
+      --font-display: 'Cinzel', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'Space Mono', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .font-serif { font-family: var(--font-display); }
+    .font-mono { font-family: var(--font-mono); }
+    .tabular-nums { font-variant-numeric: tabular-nums; }
+    header.admin-header {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-color);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+    .brand-wrap { display: flex; align-items: center; gap: 12px; }
+    .brand-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(212, 175, 105, 0.25), rgba(212, 175, 105, 0.05));
+      border: 1px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 18px;
+    }
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      line-height: 1.1;
+    }
+    .brand-subtitle { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
+    .header-pills { display: flex; align-items: center; gap: 10px; }
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+    }
+    .badge-pill.status-live { border-color: rgba(16, 185, 129, 0.4); color: #34d399; }
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+    }
+    .admin-container { display: flex; flex: 1; }
+    aside.admin-sidebar {
+      width: 250px;
+      background: var(--bg-surface);
+      border-right: 1px solid var(--border-color);
+      padding: 20px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .nav-category {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--gold);
+      padding: 10px 12px 4px;
+      margin-top: 8px;
+    }
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+    .nav-btn:hover { background: var(--bg-secondary); color: var(--text-main); }
+    .nav-btn.active {
+      background: rgba(212, 175, 105, 0.12);
+      border-color: rgba(212, 175, 105, 0.3);
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .nav-badge-count {
+      margin-left: auto;
+      background: var(--warning);
+      color: #000;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 12px;
+    }
+    main.admin-main {
+      flex: 1;
+      padding: 24px;
+      overflow-y: auto;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .view-pane { display: none; animation: fadeIn 0.25s ease-out; }
+    .view-pane.active { display: block; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .pane-header {
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .pane-title { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--text-main); }
+    .pane-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .summary-bar {
+      background: linear-gradient(135deg, rgba(212, 175, 105, 0.08) 0%, rgba(19, 19, 22, 0.95) 100%);
+      border: 1px solid rgba(212, 175, 105, 0.3);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .summary-item { display: flex; flex-direction: column; gap: 4px; }
+    .summary-item-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .summary-item-val {
+      font-family: var(--font-mono);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+    .summary-item-sub { font-size: 11px; color: var(--text-dim); }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 18px 20px;
+      position: relative;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      border-radius: 14px 0 0 14px;
+      background: var(--gold);
+    }
+    .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); margin-bottom: 6px; }
+    .stat-value { font-family: var(--font-mono); font-size: 24px; font-weight: 700; color: var(--text-main); }
+    .stat-meta { font-size: 11px; color: var(--text-muted); margin-top: 6px; }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .ops-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .ops-card:hover { border-color: rgba(212, 175, 105, 0.4); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); }
+    .ops-card.pending { border-left: 4px solid var(--warning); }
+    .ops-card.approved, .ops-card.paid { border-left: 4px solid var(--success); }
+    .ops-card.rejected { border-left: 4px solid var(--error); }
+    .ops-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 12px;
+    }
+    .ops-user-name { font-size: 15px; font-weight: 700; color: var(--text-main); }
+    .ops-user-sub { font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); margin-top: 2px; }
+    .ops-card-body { display: flex; flex-direction: column; gap: 8px; font-size: 12px; }
+    .ops-data-row { display: flex; justify-content: space-between; align-items: center; }
+    .ops-data-label { color: var(--text-muted); font-size: 11px; }
+    .ops-data-val { font-family: var(--font-mono); font-weight: 600; color: var(--text-main); }
+    .ops-tax-box {
+      margin-top: 6px;
+      padding: 8px 10px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      text-align: center;
+    }
+    .ops-tax-item { display: flex; flex-direction: column; gap: 2px; }
+    .ops-tax-lbl { font-size: 9px; text-transform: uppercase; color: var(--text-dim); }
+    .ops-tax-val { font-family: var(--font-mono); font-size: 11px; font-weight: 700; }
+    .ops-card-actions { display: flex; gap: 8px; align-items: center; }
+    .user-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .user-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 18px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    .user-card:hover { border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); }
+    .user-card.is-pinned {
+      border-color: rgba(212, 175, 105, 0.6);
+      background: linear-gradient(135deg, rgba(212, 175, 105, 0.05) 0%, var(--bg-surface) 100%);
+    }
+    .pinned-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .user-card-head { display: flex; align-items: center; gap: 12px; }
+    .user-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--gold-dim);
+      border: 1.5px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .user-balance-matrix {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
+      padding: 10px;
+      background: var(--bg-elevated);
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      text-align: center;
+    }
+    .user-matrix-item { display: flex; flex-direction: column; gap: 2px; }
+    .user-matrix-lbl { font-size: 9px; text-transform: uppercase; color: var(--text-dim); }
+    .user-matrix-val { font-family: var(--font-mono); font-size: 11px; font-weight: 700; }
+    .table-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .table-toolbar {
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-color);
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .search-input {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 9px 14px;
+      color: var(--text-main);
+      font-size: 13px;
+      outline: none;
+      min-width: 280px;
+    }
+    .search-input:focus { border-color: var(--gold); }
+    .filter-tabs {
+      display: flex;
+      background: var(--bg-elevated);
+      padding: 3px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      gap: 2px;
+      overflow-x: auto;
+    }
+    .filter-tab {
+      padding: 6px 14px;
+      font-size: 11px;
+      font-weight: 600;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      border-radius: 6px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .filter-tab:hover { color: var(--text-main); }
+    .filter-tab.active { background: var(--bg-secondary); color: var(--gold); }
+    .data-table-wrap { overflow-x: auto; }
+    table.data-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; }
+    table.data-table th {
+      padding: 12px 18px;
+      background: var(--bg-elevated);
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--border-color);
+      white-space: nowrap;
+    }
+    table.data-table td { padding: 14px 18px; border-bottom: 1px solid var(--border-color); vertical-align: middle; white-space: nowrap; }
+    table.data-table tr:hover { background: rgba(255, 255, 255, 0.02); }
+    .ledger-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 9px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .ledger-badge.recharge { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .ledger-badge.withdrawal { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .ledger-badge.purchase { background: rgba(212, 175, 105, 0.18); color: var(--gold); border: 1px solid rgba(212, 175, 105, 0.35); }
+    .ledger-badge.daily_credit { background: rgba(6, 182, 212, 0.15); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.3); }
+    .ledger-badge.maturity_release { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .ledger-badge.referral_commission { background: rgba(234, 179, 8, 0.15); color: #facc15; border: 1px solid rgba(234, 179, 8, 0.3); }
+    .ledger-badge.admin_adjustment { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+    .ledger-badge.refund { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+    .status-badge.pending { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .status-badge.approved, .status-badge.active, .status-badge.paid, .status-badge.completed { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .status-badge.rejected, .status-badge.blocked { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+    .status-badge.online { background: rgba(6, 182, 212, 0.15); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.3); }
+    .btn {
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+    .btn-gold { background: var(--gold); color: #000; }
+    .btn-gold:hover { background: var(--gold-hover); }
+    .btn-success { background: rgba(16, 185, 129, 0.18); border-color: rgba(16, 185, 129, 0.4); color: #34d399; }
+    .btn-success:hover { background: rgba(16, 185, 129, 0.28); }
+    .btn-danger { background: rgba(239, 68, 68, 0.18); border-color: rgba(239, 68, 68, 0.4); color: #f87171; }
+    .btn-danger:hover { background: rgba(239, 68, 68, 0.28); }
+    .btn-secondary { background: var(--bg-secondary); border-color: var(--border-color); color: var(--text-main); }
+    .btn-secondary:hover { background: var(--border-subtle); }
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(6px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      overflow-y: auto;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      max-width: 580px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-title { font-family: var(--font-display); font-size: 19px; color: var(--gold); margin-bottom: 6px; }
+    .form-group { margin-bottom: 16px; }
+    .form-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .form-control {
+      width: 100%;
+      padding: 10px 14px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: var(--text-main);
+      font-size: 13px;
+      outline: none;
+    }
+    .form-control:focus { border-color: var(--gold); }
+    #toastContainer {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 200;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .toast-msg {
+      background: var(--bg-surface);
+      border: 1px solid var(--gold);
+      color: var(--text-main);
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-size: 13px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      animation: slideIn 0.3s ease-out;
+    }
+    @keyframes slideIn { from { transform: translateX(50px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    /* ===== ADMIN LOGIN + FIXED HEADER / SCROLLABLE NAV ===== */
+    body.app-locked > .admin-header, body.app-locked > .admin-container { display:none !important; }
+    .admin-login-screen {
+      position:fixed; inset:0; z-index:9999; display:grid; place-items:center;
+      padding:24px; background:
+        radial-gradient(circle at 50% 0%, rgba(212,175,105,.14), transparent 38%),
+        linear-gradient(145deg,#070708 0%,#0d0d10 55%,#111116 100%);
+    }
+    .admin-login-card {
+      width:min(440px,100%); background:rgba(25,25,29,.96); border:1px solid rgba(212,175,105,.28);
+      border-radius:24px; padding:34px; box-shadow:0 28px 80px rgba(0,0,0,.55),0 0 40px rgba(212,175,105,.07);
+      backdrop-filter:blur(16px);
+    }
+    .login-logo { width:62px;height:62px;border-radius:18px;margin:0 auto 18px;display:grid;place-items:center;
+      border:1px solid var(--gold);color:var(--gold);font:800 28px var(--font-display);
+      background:linear-gradient(135deg,rgba(212,175,105,.2),rgba(212,175,105,.03)); }
+    .login-title{text-align:center;font:800 25px var(--font-display);letter-spacing:1.5px;color:var(--gold)}
+    .login-subtitle{text-align:center;color:var(--text-muted);font-size:12px;margin:7px 0 26px}
+    .login-field{margin-bottom:15px}.login-field label{display:block;color:var(--text-muted);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:7px}
+    .login-field input{width:100%;height:48px;padding:0 14px;border-radius:12px;border:1px solid var(--border-subtle);background:#101014;color:var(--text-main);outline:none;font:500 14px var(--font-body)}
+    .login-field input:focus{border-color:rgba(212,175,105,.65);box-shadow:0 0 0 3px rgba(212,175,105,.09)}
+    .login-submit{width:100%;height:48px;margin-top:7px;border:1px solid rgba(212,175,105,.65);border-radius:12px;background:linear-gradient(135deg,#d4af69,#a9823e);color:#090909;font-weight:800;cursor:pointer;letter-spacing:.2px}
+    .login-submit:disabled{opacity:.6;cursor:wait}.login-error{min-height:20px;margin-top:13px;text-align:center;color:#fca5a5;font-size:12px}
+    .login-note{text-align:center;color:var(--text-dim);font-size:10px;margin-top:16px;line-height:1.6}
+    .admin-container{min-height:0}
+    aside.admin-sidebar{height:calc(100vh - 69px);position:sticky;top:69px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(212,175,105,.35) transparent}
+    aside.admin-sidebar::-webkit-scrollbar{width:6px} aside.admin-sidebar::-webkit-scrollbar-thumb{background:rgba(212,175,105,.35);border-radius:10px}
+    main.admin-main{min-height:calc(100vh - 69px)}
+    @media (max-width:900px){aside.admin-sidebar{height:auto;max-height:42vh;position:sticky;top:69px;z-index:20;overflow-y:auto}}
+    @media (max-width: 900px) {
+      .admin-container { flex-direction: column; }
+      aside.admin-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border-color); }
+      .cards-grid { grid-template-columns: 1fr; }
+      .user-cards-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="app-locked">
+
+  <section id="adminLoginScreen" class="admin-login-screen" aria-label="CIRCOLA administrator login">
+    <form class="admin-login-card" onsubmit="event.preventDefault();adminLogin();">
+      <div class="login-logo">C</div>
+      <div class="login-title">CIRCOLA ADMIN</div>
+      <div class="login-subtitle">Secure administrator access</div>
+      <div class="login-field"><label for="adminPhone">Phone number</label><input id="adminPhone" type="tel" inputmode="tel" autocomplete="username" placeholder="07XXXXXXXX" required></div>
+      <div class="login-field"><label for="adminPassword">Password</label><input id="adminPassword" type="password" autocomplete="current-password" placeholder="Enter admin password" required></div>
+      <button id="adminLoginButton" class="login-submit" type="submit">Sign in to Admin Panel</button>
+      <div id="adminLoginError" class="login-error"></div>
+      <div class="login-note">Only the authorized CIRCOLA administrator account can enter this panel.</div>
+    </form>
+  </section>
+<!-- ================= PART 2 OF 5: ADMIN HEADER, SIDEBAR & DASHBOARD VIEW ================= -->
+  <!-- ADMIN HEADER -->
+  <header class="admin-header">
+    <div class="brand-wrap">
+      <div class="brand-badge">C</div>
+      <div>
+        <div class="brand-title">CIRCOLA</div>
+        <div class="brand-subtitle">Administrator Control Panel & Master Ledger</div>
+      </div>
+    </div>
+
+    <div class="header-pills">
+      <div class="badge-pill status-live" title="Appwrite Cloud FRA Live Node 24">
+        <div class="pulse-dot"></div>
+        <span>Appwrite Project: 6ae3b79d...</span>
+      </div>
+
+      <div class="badge-pill">
+        <span>Admin: <strong style="color: var(--gold);">6ae43bc2...</strong></span>
+      </div>
+
+      <button onclick="downloadSelfHtml()" class="btn btn-gold" style="font-weight: 700; gap: 6px; padding: 7px 14px; font-size: 12px; box-shadow: 0 0 15px rgba(212, 175, 105, 0.4);">
+        <span>⬇️ Download HTML File</span>
+      </button>
+
+      <a href="/circola_web_application.html" target="_blank" class="btn btn-secondary" style="text-decoration: none; font-size: 11px;">
+        <span>Customer App ↗</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- BODY CONTAINER -->
+  <div class="admin-container">
+    <!-- NAVIGATION SIDEBAR (ANNOUNCEMENTS REMOVED) -->
+    <aside class="admin-sidebar">
+      <div class="nav-category">Overview</div>
+      <button class="nav-btn active" onclick="switchPane('dashboard')">
+        <span>📊 Dashboard KPIs</span>
+      </button>
+
+      <div class="nav-category">Financial Operations</div>
+      <button class="nav-btn" onclick="switchPane('deposits')">
+        <span>📥 Deposit Approvals</span>
+        <span class="nav-badge-count" id="pendingDepCount">3</span>
+      </button>
+      <button class="nav-btn" onclick="switchPane('withdrawals')">
+        <span>📤 Withdrawal Approvals</span>
+        <span class="nav-badge-count" id="pendingWdCount">2</span>
+      </button>
+      <button class="nav-btn" onclick="switchPane('ledger')">
+        <span>📑 Master Ledger</span>
+      </button>
+
+      <div class="nav-category">Platform Management</div>
+      <button class="nav-btn" onclick="switchPane('customers')">
+        <span>👥 User Management</span>
+      </button>
+      <button class="nav-btn" onclick="switchPane('recipients')">
+        <span>💳 Payment Recipients</span>
+      </button>
+      <button class="nav-btn" onclick="switchPane('settings')">
+        <span>⚙️ App Settings</span>
+      </button>
+      <button class="nav-btn" onclick="switchPane('audit')">
+        <span>🛡️ Audit Trail</span>
+      </button>
+    </aside>
+
+    <!-- MAIN VIEW PANES -->
+    <main class="admin-main">
+
+      <!-- 1. DASHBOARD PANE -->
+      <section id="pane-dashboard" class="view-pane active">
+        <div class="pane-header">
+          <div>
+            <h1 class="pane-title">Platform Dashboard</h1>
+            <p class="pane-desc">Financial control center synchronized with Appwrite and Master Financial Ledger.</p>
+          </div>
+          <div>
+            <button class="btn btn-gold" onclick="refreshAdminData()">🔄 Sync Master Ledger</button>
+          </div>
+        </div>
+
+        <!-- SUMMARY OF APPROVED DEPOSITS AND WITHDRAWALS -->
+        <div class="summary-bar">
+          <div class="summary-item">
+            <span class="summary-item-label"><span style="color: var(--success);">📥</span> Approved Deposits</span>
+            <span class="summary-item-val" style="color: var(--success);" id="sumApprovedDepositsUGX">UGX 4,250,000</span>
+            <span class="summary-item-sub" id="sumApprovedDepositsCount">3 deposits completed</span>
+          </div>
+
+          <div class="summary-item">
+            <span class="summary-item-label"><span style="color: var(--warning);">📤</span> Approved Withdrawals (Gross)</span>
+            <span class="summary-item-val" style="color: var(--warning);" id="sumApprovedWdGrossUGX">UGX 1,600,000</span>
+            <span class="summary-item-sub" id="sumApprovedWdCount">2 payouts disbursed</span>
+          </div>
+
+          <div class="summary-item">
+            <span class="summary-item-label"><span style="color: var(--gold);">🏛️</span> 5% Tax Revenue Retained</span>
+            <span class="summary-item-val" style="color: var(--gold);" id="sumApprovedTaxUGX">UGX 80,000</span>
+            <span class="summary-item-sub">Platform tax withheld</span>
+          </div>
+
+          <div class="summary-item">
+            <span class="summary-item-label"><span style="color: var(--cyan);">⚖️</span> Net Platform Cash Flow</span>
+            <span class="summary-item-val" style="color: var(--cyan);" id="sumNetPlatformFlowUGX">+UGX 2,730,000</span>
+            <span class="summary-item-sub">Net retained liquidity</span>
+          </div>
+        </div>
+
+        <!-- KPI Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Registered Members</div>
+            <div class="stat-value" id="kpiCustomers">7</div>
+            <div class="stat-meta" id="kpiCustomersMeta">6 active profiles</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Pending Deposits</div>
+            <div class="stat-value" style="color: var(--warning);" id="kpiPendingDeposits">3</div>
+            <div class="stat-meta" id="kpiPendingDepositsUGX">UGX 2,500,000 awaiting review</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Pending Withdrawals</div>
+            <div class="stat-value" style="color: var(--warning);" id="kpiPendingWithdrawals">2</div>
+            <div class="stat-meta" id="kpiPendingWithdrawalsUGX">UGX 1,000,000 awaiting payout</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Active Horology Timepieces</div>
+            <div class="stat-value" style="color: var(--gold);" id="kpiActiveContracts">6</div>
+            <div class="stat-meta" id="kpiContractLiability">UGX 12,850,000 maturity liability</div>
+          </div>
+        </div>
+
+        <!-- Quick Action Queue Panels -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-bottom: 24px;">
+          <div class="table-card" style="padding: 20px;">
+            <h3 class="font-serif" style="color: var(--gold); font-size: 16px; margin-bottom: 8px;">Pending Deposits Awaiting Approval</h3>
+            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">Review mobile money references with user name, amount, phone number, and TID.</p>
+            <div id="dashboardPendingDepositsPreview"></div>
+            <button class="btn btn-secondary" style="width: 100%; margin-top: 12px;" onclick="switchPane('deposits')">Open Deposit Manager →</button>
+          </div>
+
+          <div class="table-card" style="padding: 20px;">
+            <h3 class="font-serif" style="color: var(--gold); font-size: 16px; margin-bottom: 8px;">Pending Withdrawal Requests</h3>
+            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">Review withdrawal payouts with 5% tax deduction and net payout due.</p>
+            <div id="dashboardPendingWdPreview"></div>
+            <button class="btn btn-secondary" style="width: 100%; margin-top: 12px;" onclick="switchPane('withdrawals')">Open Withdrawal Manager →</button>
+          </div>
+        </div>
+      </section>
+<!-- ================= PART 3 OF 5: DEPOSITS & WITHDRAWALS VIEWS ================= -->
+      <!-- 2. DEPOSITS PANE -->
+      <section id="pane-deposits" class="view-pane">
+        <div class="pane-header">
+          <div>
+            <h1 class="pane-title">Deposit Approvals</h1>
+            <p class="pane-desc">Deposit cards show customer name, amount, phone number, and TID with direct Approve & Reject actions.</p>
+          </div>
+        </div>
+
+        <!-- Deposit Summary Row -->
+        <div class="summary-bar" style="margin-bottom: 18px; padding: 14px 20px;">
+          <div>
+            <span class="summary-item-label">Total Approved Deposits</span>
+            <span class="summary-item-val" style="color: var(--success); font-size: 18px;" id="depSummaryApproved">UGX 4,250,000</span>
+          </div>
+          <div>
+            <span class="summary-item-label">Pending Review</span>
+            <span class="summary-item-val" style="color: var(--warning); font-size: 18px;" id="depSummaryPending">3 requests</span>
+          </div>
+          <div>
+            <span class="summary-item-label">Rejected Requests</span>
+            <span class="summary-item-val" style="color: var(--error); font-size: 18px;" id="depSummaryRejected">0 rejected</span>
+          </div>
+        </div>
+
+        <!-- Filter & Search Toolbar -->
+        <div class="table-toolbar" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 16px;">
+          <input type="text" id="depSearchInput" class="search-input" placeholder="Search by name, phone, TID, or reference..." oninput="renderDeposits()">
+          <div class="filter-tabs">
+            <button class="filter-tab active" id="depFilter-all" onclick="setDepositFilter('all')">All</button>
+            <button class="filter-tab" id="depFilter-Pending" onclick="setDepositFilter('Pending')">Pending</button>
+            <button class="filter-tab" id="depFilter-Approved" onclick="setDepositFilter('Approved')">Approved</button>
+            <button class="filter-tab" id="depFilter-Rejected" onclick="setDepositFilter('Rejected')">Rejected</button>
+          </div>
+        </div>
+
+        <!-- Deposit Cards Container -->
+        <div class="cards-grid" id="depositCardsContainer"></div>
+      </section>
+
+      <!-- 3. WITHDRAWALS PANE -->
+      <section id="pane-withdrawals" class="view-pane">
+        <div class="pane-header">
+          <div>
+            <h1 class="pane-title">Withdrawal Approvals & Payouts</h1>
+            <p class="pane-desc">Withdrawal cards show username, payout phone number, account holder name, gross amount, and 5% tax calculator with net payout.</p>
+          </div>
+        </div>
+
+        <!-- Withdrawal Summary Row -->
+        <div class="summary-bar" style="margin-bottom: 18px; padding: 14px 20px;">
+          <div>
+            <span class="summary-item-label">Total Approved Payouts (Gross)</span>
+            <span class="summary-item-val" style="color: var(--warning); font-size: 18px;" id="wdSummaryGross">UGX 1,600,000</span>
+          </div>
+          <div>
+            <span class="summary-item-label">5% Platform Tax Retained</span>
+            <span class="summary-item-val" style="color: var(--gold); font-size: 18px;" id="wdSummaryTax">UGX 80,000</span>
+          </div>
+          <div>
+            <span class="summary-item-label">Net Disbursed to Clients</span>
+            <span class="summary-item-val" style="color: var(--success); font-size: 18px;" id="wdSummaryNet">UGX 1,520,000</span>
+          </div>
+        </div>
+
+        <!-- Filter & Search Toolbar -->
+        <div class="table-toolbar" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 16px;">
+          <input type="text" id="wdSearchInput" class="search-input" placeholder="Search by username, phone, account name, ref..." oninput="renderWithdrawals()">
+          <div class="filter-tabs">
+            <button class="filter-tab active" id="wdFilter-all" onclick="setWdFilter('all')">All</button>
+            <button class="filter-tab" id="wdFilter-Pending" onclick="setWdFilter('Pending')">Pending</button>
+            <button class="filter-tab" id="wdFilter-Paid" onclick="setWdFilter('Paid')">Approved</button>
+            <button class="filter-tab" id="wdFilter-Rejected" onclick="setWdFilter('Rejected')">Rejected</button>
+          </div>
+        </div>
+
+        <!-- Withdrawal Cards Container -->
+        <div class="cards-grid" id="withdrawalCardsContainer"></div>
+      </section>
+<!-- ================= PART 4 OF 5: USER MANAGEMENT, MASTER LEDGER, SETTINGS & MODALS ================= -->
+      <!-- 4. CUSTOMERS PANE (ALL, ACTIVE, BLOCKED, ONLINE, PINNED) -->
+      <section id="pane-customers" class="view-pane">
+        <div class="pane-header">
+          <div>
+            <h1 class="pane-title">User Management Directory</h1>
+            <p class="pane-desc">Tap any customer card to view full account identity, toggle block/unblock, pin to top, or edit both wallet and balances.</p>
+          </div>
+        </div>
+
+        <!-- Filter & Search Toolbar: all, active, blocked, online, pinned -->
+        <div class="table-toolbar" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 16px;">
+          <input type="text" id="custSearchInput" class="search-input" placeholder="Search by username, phone number, or ID..." oninput="renderUserCards()">
+          <div class="filter-tabs">
+            <button class="filter-tab active" id="userFilter-all" onclick="setUserFilter('all')">All</button>
+            <button class="filter-tab" id="userFilter-active" onclick="setUserFilter('active')">Active</button>
+            <button class="filter-tab" id="userFilter-blocked" onclick="setUserFilter('blocked')">Blocked</button>
+            <button class="filter-tab" id="userFilter-online" onclick="setUserFilter('online')">Online</button>
+            <button class="filter-tab" id="userFilter-pinned" onclick="setUserFilter('pinned')">📌 Pinned</button>
+          </div>
+        </div>
+
+        <!-- User Cards Grid -->
+        <div class="user-cards-grid" id="userCardsContainer"></div>
+      </section>
+
+      <!-- 5. MASTER LEDGER PANE (DIFFERENTIATE ALL 8 LEDGER TYPES) -->
+      <section id="pane-ledger" class="view-pane">
+        <div class="pane-header">
+          <div>
+            <h1 class="pane-title">Master Financial Ledger</h1>
+            <p class="pane-desc">Authoritative, differentiated transaction log across recharges, payouts, purchases, daily vault credits, releases, bonuses, adjustments, and refunds.</p>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn btn-secondary" onclick="exportLedgerCSV()">📥 Export CSV</button>
+          </div>
+        </div>
+
+        <div class="table-card">
+          <div class="table-toolbar">
+            <input type="text" id="ledgerSearchInput" class="search-input" placeholder="Search ledger by user, reference, phone, or description..." oninput="renderLedgerTable()">
+            <div class="filter-tabs">
+              <button class="filter-tab active" id="ledgerFilter-all" onclick="setLedgerFilter('all')">All</button>
+              <button class="filter-tab" id="ledgerFilter-RECHARGE" onclick="setLedgerFilter('RECHARGE')">Recharge</button>
+              <button class="filter-tab" id="ledgerFilter-WITHDRAWAL" onclick="setLedgerFilter('WITHDRAWAL')">Withdrawal</button>
+              <button class="filter-tab" id="ledgerFilter-PURCHASE" onclick="setLedgerFilter('PURCHASE')">Purchase</button>
+              <button class="filter-tab" id="ledgerFilter-DAILY_CREDIT" onclick="setLedgerFilter('DAILY_CREDIT')">Daily Credit</button>
+              <button class="filter-tab" id="ledgerFilter-MATURITY_RELEASE" onclick="setLedgerFilter('MATURITY_RELEASE')">Maturity</button>
+              <button class="filter-tab" id="ledgerFilter-REFERRAL_COMMISSION" onclick="setLedgerFilter('REFERRAL_COMMISSION')">Referral Bonus</button>
+              <button class="filter-tab" id="ledgerFilter-ADMIN_ADJUSTMENT" onclick="setLedgerFilter('ADMIN_ADJUSTMENT')">Adjustment</button>
+              <button class="filter-tab" id="ledgerFilter-REFUND" onclick="setLedgerFilter('REFUND')">Refund</button>
+            </div>
+          </div>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Type</th>
+                  <th>Customer Profile</th>
+                  <th>Reference / TID</th>
+                  <th>Amount (UGX)</th>
+                  <th>Description</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="ledgerTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. PAYMENT RECIPIENTS PANE -->
+      <section id="pane-recipients" class="view-pane">
+        <div class="pane-header">
+          <div>
+            <h1 class="pane-title">Payment Recipients (MTN & Airtel)</h1>
+            <p class="pane-desc">Manage the telecom merchant accounts presented to customers on the Deposit screen.</p>
+          </div>
+          <button class="btn btn-gold" onclick="savePaymentRecipients()">💾 Save Merchant Details</button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 20px;">
+          <div class="table-card" style="padding: 24px;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+              <span style="background: #eab308; color: #000; font-weight: 800; font-size: 11px; padding: 4px 8px; border-radius: 6px;">MTN</span>
+              <h3 class="font-serif" style="font-size: 16px;">MTN Mobile Money Recipient</h3>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Merchant / Account Name</label>
+              <input type="text" id="mtnAccountName" class="form-control" value="CIRCOLA HOROLOGY LTD (MTN MERCHANT)">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Merchant Paybill / Phone Number</label>
+              <input type="text" id="mtnAccountNumber" class="form-control font-mono" value="0782 194 028">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Customer Payment Instructions</label>
+              <textarea id="mtnInstructions" class="form-control" rows="3">Send via MTN Mobile Money merchant paybill and submit your TID.</textarea>
+            </div>
+          </div>
+
+          <div class="table-card" style="padding: 24px;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+              <span style="background: #ef4444; color: #fff; font-weight: 800; font-size: 11px; padding: 4px 8px; border-radius: 6px;">AIRTEL</span>
+              <h3 class="font-serif" style="font-size: 16px;">Airtel Money Recipient</h3>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Merchant / Account Name</label>
+              <input type="text" id="airtelAccountName" class="form-control" value="CIRCOLA VENTURES UGANDA">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Merchant Code / Phone Number</label>
+              <input type="text" id="airtelAccountNumber" class="form-control font-mono" value="0755 883 190">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Customer Payment Instructions</label>
+              <textarea id="airtelInstructions" class="form-control" rows="3">Send via Airtel Money merchant code and submit your TID.</textarea>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. APP SETTINGS PANE -->
+      <section id="pane-settings" class="view-pane">
+        <div class="pane-header">
+          <div>
+            <h1 class="pane-title">Platform Settings</h1>
+            <p class="pane-desc">Configure WhatsApp/Telegram community links and global banner text.</p>
+          </div>
+          <button class="btn btn-gold" onclick="saveAppSettings()">💾 Save App Settings</button>
+        </div>
+
+        <div class="table-card" style="padding: 24px; max-width: 700px;">
+          <div class="form-group">
+            <label class="form-label">Official WhatsApp / Community Group Link</label>
+            <input type="text" id="settingCommunityUrl" class="form-control font-mono" value="https://chat.whatsapp.com/circola-luxury-horology">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Global Top Banner Notice</label>
+            <textarea id="settingBanner" class="form-control" rows="2">Official CIRCOLA Horology Administrator Panel. Appwrite Cloud Frankfurt node connected.</textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. AUDIT TRAIL PANE -->
+      <section id="pane-audit" class="view-pane">
+        <div class="pane-header">
+          <div>
+            <h1 class="pane-title">Security & Audit Logs</h1>
+            <p class="pane-desc">Immutable log of administrator approvals, rejections, wallet balance adjustments, and status changes.</p>
+          </div>
+        </div>
+        <div class="table-card">
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Admin ID</th>
+                  <th>Action</th>
+                  <th>Entity Type</th>
+                  <th>Target ID</th>
+                  <th>Audit Note / Changes</th>
+                </tr>
+              </thead>
+              <tbody id="auditTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- MODALS -->
+  <!-- MODAL A: USER DETAILS & EDIT WALLET + BALANCES -->
+  <div id="userDetailsModal" class="modal-overlay">
+    <div class="modal-box">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div class="user-avatar" id="modalUserAvatar">U</div>
+          <div>
+            <h3 class="modal-title" style="margin-bottom: 0;" id="modalUsername">Username</h3>
+            <span style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono);" id="modalUserPhone">+256 ...</span>
+          </div>
+        </div>
+        <button class="btn btn-secondary" onclick="closeModal('userDetailsModal')">✕</button>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; font-size: 12px; background: var(--bg-elevated); padding: 12px; border-radius: 10px; border: 1px solid var(--border-color);">
+        <div><span style="color: var(--text-dim);">User ID:</span> <strong id="modalUserId" class="font-mono" style="font-size: 10px;">-</strong></div>
+        <div><span style="color: var(--text-dim);">Status:</span> <span id="modalUserStatusBadge" class="status-badge approved">Active</span></div>
+        <div><span style="color: var(--text-dim);">Referral Code:</span> <strong id="modalUserRef" class="font-mono" style="color: var(--gold);">-</strong></div>
+        <div><span style="color: var(--text-dim);">Referred By:</span> <strong id="modalUserReferredBy" class="font-mono">-</strong></div>
+        <div><span style="color: var(--text-dim);">Total Referrals:</span> <strong id="modalUserTotalRefs" class="font-mono" style="color: var(--gold);">0</strong></div>
+        <div><span style="color: var(--text-dim);">Active Watches:</span> <strong id="modalUserActiveWatches" class="font-mono">0</strong></div>
+      </div>
+
+      <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+        <button id="modalToggleBlockBtn" class="btn btn-danger" style="flex: 1;" onclick="toggleBlockCurrentUser()">Block Account</button>
+        <button id="modalTogglePinBtn" class="btn btn-secondary" style="flex: 1;" onclick="togglePinCurrentUser()">📌 Pin User</button>
+      </div>
+
+      <!-- EDIT BOTH WALLET AND BALANCES DIRECTLY -->
+      <div style="padding: 16px; background: rgba(212, 175, 105, 0.05); border: 1px solid var(--gold); border-radius: 12px; margin-bottom: 20px;">
+        <h4 class="font-serif" style="color: var(--gold); font-size: 14px; margin-bottom: 12px; font-weight: bold;">Edit Both Wallet & Balances</h4>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label" style="color: var(--gold);">Recharge Wallet</label>
+            <input type="number" id="editRechargeBalInput" class="form-control font-mono" style="font-weight: bold;">
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label" style="color: var(--success);">Withdrawable</label>
+            <input type="number" id="editWithdrawableBalInput" class="form-control font-mono" style="font-weight: bold;">
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label" style="color: var(--warning);">Locked Vault</label>
+            <input type="number" id="editLockedBalInput" class="form-control font-mono" style="font-weight: bold;">
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label class="form-label">Adjustment Reason / Audit Note (Required)</label>
+          <input type="text" id="editBalanceReasonInput" class="form-control" placeholder="e.g. Administrative adjustment, manual reconciliation">
+        </div>
+        <button class="btn btn-gold" style="width: 100%;" onclick="saveUserBalanceAdjustments()">💾 Save Wallet & Balance Changes</button>
+      </div>
+
+      <!-- Owned Watch Contracts List -->
+      <div>
+        <h4 class="font-serif" style="font-size: 14px; font-weight: bold; margin-bottom: 10px;">Owned Watch Contracts</h4>
+        <div id="modalUserWatchesList" style="display: flex; flex-direction: column; gap: 8px; max-height: 180px; overflow-y: auto;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL B: REJECT DEPOSIT -->
+  <div id="rejectionModal" class="modal-overlay">
+    <div class="modal-box">
+      <h3 class="modal-title">Reject Deposit Request</h3>
+      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">Provide a reason for rejecting this deposit. The customer will receive an immediate notification.</p>
+      <input type="hidden" id="rejectTxId">
+      <div class="form-group">
+        <label class="form-label">Rejection Reason</label>
+        <textarea id="rejectReasonText" class="form-control" rows="3" placeholder="e.g. Transaction ID unverified on telecom merchant statement."></textarea>
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 10px;">
+        <button class="btn btn-secondary" onclick="closeModal('rejectionModal')">Cancel</button>
+        <button class="btn btn-danger" onclick="confirmDepositRejection()">Confirm Rejection</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL C: APPROVE WITHDRAWAL PAYOUT -->
+  <div id="payoutModal" class="modal-overlay">
+    <div class="modal-box">
+      <h3 class="modal-title">Confirm Withdrawal Payout</h3>
+      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">Record telecom provider payout transaction reference (TID) to disburse net funds to the customer.</p>
+      <input type="hidden" id="payoutTxId">
+      <div style="padding: 12px; background: var(--bg-elevated); border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 14px; font-size: 12px;" id="payoutBreakdownBox"></div>
+      <div class="form-group">
+        <label class="form-label">Carrier Payout Reference / TID</label>
+        <input type="text" id="payoutCarrierRef" class="form-control font-mono" placeholder="e.g. MTN-PAY-8492019">
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 10px;">
+        <button class="btn btn-secondary" onclick="closeModal('payoutModal')">Cancel</button>
+        <button class="btn btn-gold" onclick="confirmWithdrawalPayout()">Confirm & Mark Approved</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL D: REJECT & REFUND WITHDRAWAL -->
+  <div id="wdRejectModal" class="modal-overlay">
+    <div class="modal-box">
+      <h3 class="modal-title">Reject & Refund Withdrawal</h3>
+      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">The gross withdrawal amount will be automatically restored to the customer's Withdrawable Balance, and an immutable refund entry will be logged in the Master Ledger.</p>
+      <input type="hidden" id="wdRejectTxId">
+      <div class="form-group">
+        <label class="form-label">Mandatory Rejection Reason</label>
+        <textarea id="wdRejectReasonText" class="form-control" rows="3" placeholder="e.g. Invalid telecom phone number, account name does not match registration."></textarea>
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 10px;">
+        <button class="btn btn-secondary" onclick="closeModal('wdRejectModal')">Cancel</button>
+        <button class="btn btn-danger" onclick="confirmWithdrawalRejection()">Confirm Refund & Reject</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastContainer"></div>
+<!-- ================= PART 5 OF 5: LIVE APPWRITE ADMIN ENGINE & CLOSING ================= -->
+<script>
+(() => {
+  'use strict';
+  const APPWRITE_ENDPOINT='https://fra.cloud.appwrite.io/v1';
+  const APPWRITE_PROJECT='6ae3b79d0029a009cbb0';
+  const DATABASE_ID='6ae410d6003158bfd1d3';
+  const ADMIN_AUTH_ID='c579c5e8-33c6-4d53-a3b2-9a2cb1549960-auth';
+  const ADMIN_PROFILE_ID='04dc77c0-d7b8-4f9a-946d-a552bbe28eee-profiles';
+  const TABLE_PROFILES='6ae432ef001aa9ba8b97';
+  const TABLE_WALLETS='6ae42d4c001a0d317423';
+  const TABLE_LEDGER='6ae422070034f1e2fd1e';
+  const TABLE_PURCHASES='6ae429c40014a00f63f2';
+  const TABLE_NOTIFICATIONS='6ae47d4200043e7fcdb5';
+  const TABLE_DEPOSITS='6ae42b9d00005f5f72a9';
+  const TABLE_WITHDRAWS='6ae424900033d73d974a';
+  const TABLE_COMMISSIONS='6ae4236b001f77756403';
+  const TABLE_AUDIT_LOGS='6ae42114000a6f3d61ce';
+  const TABLE_MATURITY_CREDITS='6ae428410031b067eddd';
+  const TABLE_PAYMENT_RECIPIENTS='6ae42ea60007da17435a';
+  const TABLE_PRODUCTS='6ae42f7000216440d199';
+  const TABLE_APPSETTINGS='6ae430e600127da147c5';
+
+  const state={rows:{profiles:[],wallets:[],ledger:[],purchases:[],deposits:[],withdrawals:[],commissions:[],audit:[],recipients:[],settings:[]},selectedUser:null,depositFilter:'all',wdFilter:'all',userFilter:'all',ledgerFilter:'all'};
+  const esc=v=>String(v??'').replace(/[&<>\"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[m]));
+  const money=v=>'UGX '+Number(v||0).toLocaleString();
+  const idOf=r=>r?.$id||r?.id||'';
+  const val=(r,...keys)=>{for(const k of keys){if(r&&r[k]!==undefined&&r[k]!==null)return r[k]}return ''};
+
+  async function api(path,options={}){
+    const headers=Object.assign({'Content-Type':'application/json','X-Appwrite-Project':APPWRITE_PROJECT},options.headers||{});
+    const res=await fetch(APPWRITE_ENDPOINT+path,Object.assign({},options,{headers,credentials:'include'}));
+    const raw=await res.text(); let data={}; try{data=raw?JSON.parse(raw):{}}catch(_){data={message:raw}}
+    if(!res.ok){const e=new Error(data.message||('Appwrite HTTP '+res.status));e.code=res.status;e.data=data;throw e;}
+    return data;
+  }
+  async function listRows(tableId){
+    const out=[]; let offset=0;
+    for(let i=0;i<100;i++){
+      const p=new URLSearchParams({limit:'100',offset:String(offset)});
+      const r=await api('/tablesdb/'+DATABASE_ID+'/tables/'+tableId+'/rows?'+p);
+      const rows=r.rows||[]; out.push(...rows); if(rows.length<100)break; offset+=rows.length;
+    }
+    return out;
+  }
+  async function getRow(tableId,rowId){return api('/tablesdb/'+DATABASE_ID+'/tables/'+tableId+'/rows/'+encodeURIComponent(rowId));}
+  async function updateRow(tableId,rowId,data){return api('/tablesdb/'+DATABASE_ID+'/tables/'+tableId+'/rows/'+encodeURIComponent(rowId),{method:'PATCH',body:JSON.stringify({data})});}
+  async function createRow(tableId,data,rowId){return api('/tablesdb/'+DATABASE_ID+'/tables/'+tableId+'/rows',{method:'POST',body:JSON.stringify({rowId:rowId||('adm_'+crypto.randomUUID().replaceAll('-','')),data})});}
+
+  async function getCurrentAccount(){ return api('/account'); }
+  async function requireAdmin(){
+    const account=await getCurrentAccount();
+    if(!account || !account.$id) throw new Error('Administrator login required.');
+    if(String(account.$id)!==ADMIN_AUTH_ID) throw new Error('This account is not authorized for the CIRCOLA Admin Panel.');
+    return account;
+  }
+  function normalizeAdminPhone(phone){
+    let p=String(phone||'').trim().replace(/[\s()-]/g,'');
+    if(/^07\d{8}$/.test(p)) return '+256'+p.slice(1);
+    if(/^7\d{8}$/.test(p)) return '+256'+p;
+    if(/^2567\d{8}$/.test(p)) return '+'+p;
+    if(/^\+2567\d{8}$/.test(p)) return p;
+    return p;
+  }
+  function adminSyntheticEmail(phone){return normalizeAdminPhone(phone)+'@circola.invalid';}
+  async function adminLogin(){
+    const phone=document.getElementById('adminPhone').value.trim();
+    const password=document.getElementById('adminPassword').value;
+    const btn=document.getElementById('adminLoginButton'); const err=document.getElementById('adminLoginError');
+    if(!phone || !password){err.textContent='Enter both phone number and password.';return;}
+    const normalized=normalizeAdminPhone(phone);
+    if(!/^\+2567\d{8}$/.test(normalized)){err.textContent='Enter a valid Ugandan phone number, e.g. 07XXXXXXXX.';return;}
+    btn.disabled=true; btn.textContent='Signing in…'; err.textContent='';
+    try{
+      // CIRCOLA accounts use the same synthetic-email mapping as the working customer app.
+      // Appwrite phone authentication is SMS/OTP based, not phone+password, so authenticate
+      // the existing CIRCOLA account through its mapped email/password credential instead.
+      await api('/account/sessions/email',{method:'POST',body:JSON.stringify({email:adminSyntheticEmail(normalized),password})});
+      await requireAdmin();
+      document.body.classList.remove('app-locked');
+      document.getElementById('adminLoginScreen').style.display='none';
+      await refreshAdminData();
+    }catch(e){
+      try{ await api('/account/sessions/current',{method:'DELETE'}); }catch(_){ }
+      if(String(e.message||'').toLowerCase().includes('user with the requested id could not be found')){
+        err.textContent='Administrator account not found. Check the phone number.';
+      }else if(e.code===401){
+        err.textContent='Incorrect phone number or password.';
+      }else{
+        err.textContent=e.message||'Login failed. Check the phone number and password.';
+      }
+    }finally{btn.disabled=false;btn.textContent='Sign in to Admin Panel';}
+  }
+  window.adminLogin=adminLogin;
+  function toast(msg){const c=document.getElementById('toastContainer');if(!c)return;const d=document.createElement('div');d.className='toast';d.textContent=msg;c.appendChild(d);setTimeout(()=>d.remove(),3500)}
+  function switchPane(name){document.querySelectorAll('.view-pane').forEach(e=>e.classList.toggle('active',e.id==='pane-'+name));document.querySelectorAll('.nav-btn').forEach(e=>e.classList.toggle('active',(e.getAttribute('onclick')||'').includes("'"+name+"'")));}
+  window.switchPane=switchPane;
+  window.closeModal=id=>document.getElementById(id)?.classList.remove('open');
+  window.openModal=id=>document.getElementById(id)?.classList.add('open');
+  window.downloadSelfHtml=()=>{const blob=new Blob(['<!doctype html>\n'+document.documentElement.outerHTML],{type:'text/html'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='CIRCOLA_ADMIN_LIVE.html';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
+
+  function renderDeposits(){
+    const q=(document.getElementById('depSearchInput')?.value||'').toLowerCase();
+    let rows=state.rows.deposits.filter(r=>(state.depositFilter==='all'||String(val(r,'status','transactionStatus')).toLowerCase()===state.depositFilter.toLowerCase()));
+    rows=rows.filter(r=>JSON.stringify(r).toLowerCase().includes(q));
+    const c=document.getElementById('depositCardsContainer'); if(!c)return;
+    c.innerHTML=rows.map(r=>{const status=String(val(r,'status','transactionStatus')||'Pending');const amt=Number(val(r,'amount','grossAmount','depositAmount')||0);return `<div class="table-card" style="padding:18px"><div style="display:flex;justify-content:space-between;gap:10px"><strong>${esc(val(r,'username','userName','name')||'Customer')}</strong><span class="status-badge">${esc(status)}</span></div><div style="margin-top:10px;font-size:12px;color:var(--text-muted)">Amount: <b style="color:var(--text-main)">${money(amt)}</b><br>Phone: ${esc(val(r,'phone','userPhone')||'—')}<br>TID/Reference: ${esc(val(r,'tid','transactionId','reference','referenceId')||'—')}</div><div style="display:flex;gap:8px;margin-top:14px"><button class="btn btn-gold" onclick="approveDeposit('${esc(idOf(r))}')">Approve</button><button class="btn btn-danger" onclick="rejectDeposit('${esc(idOf(r))}')">Reject</button></div></div>`}).join('')||'<div class="table-card" style="padding:20px">No deposit records found.</div>';
+  }
+  async function approveDeposit(id){await changeDeposit(id,'Approved','');}
+  async function rejectDeposit(id){const reason=prompt('Rejection reason:');if(reason===null)return;await changeDeposit(id,'Rejected',reason)}
+  async function changeDeposit(id,status,reason){try{const r=state.rows.deposits.find(x=>idOf(x)===id);if(!r)return;const data={status};if(reason)data.rejectionReason=reason;await updateRow(TABLE_DEPOSITS,id,data);toast('Deposit updated successfully.');await refreshAdminData()}catch(e){toast('Deposit update failed: '+e.message)}}
+  window.approveDeposit=approveDeposit;window.rejectDeposit=rejectDeposit;
+  window.setDepositFilter=x=>{state.depositFilter=x;document.querySelectorAll('[id^="depFilter-"]').forEach(b=>b.classList.toggle('active',b.id==='depFilter-'+x));renderDeposits()};
+
+  function renderWithdrawals(){
+    const q=(document.getElementById('wdSearchInput')?.value||'').toLowerCase();
+    let rows=state.rows.withdrawals.filter(r=>state.wdFilter==='all'||String(val(r,'status','transactionStatus')).toLowerCase()===state.wdFilter.toLowerCase());
+    rows=rows.filter(r=>JSON.stringify(r).toLowerCase().includes(q));
+    const c=document.getElementById('withdrawalCardsContainer');if(!c)return;
+    c.innerHTML=rows.map(r=>{const status=String(val(r,'status','transactionStatus')||'Pending');const gross=Number(val(r,'amount','grossAmount','withdrawalAmount')||0);const net=Math.round(gross*.95);return `<div class="table-card" style="padding:18px"><div style="display:flex;justify-content:space-between"><strong>${esc(val(r,'username','userName','name')||'Customer')}</strong><span class="status-badge">${esc(status)}</span></div><div style="margin-top:10px;font-size:12px;color:var(--text-muted)">Gross: <b>${money(gross)}</b><br>Tax 5%: ${money(gross*.05)}<br>Net: ${money(net)}<br>Phone: ${esc(val(r,'phone','payoutPhone','userPhone')||'—')}</div><div style="display:flex;gap:8px;margin-top:14px"><button class="btn btn-gold" onclick="approveWithdrawal('${esc(idOf(r))}')">Approve</button><button class="btn btn-danger" onclick="rejectWithdrawal('${esc(idOf(r))}')">Reject & Refund</button></div></div>`}).join('')||'<div class="table-card" style="padding:20px">No withdrawal records found.</div>';
+  }
+  async function approveWithdrawal(id){const ref=prompt('Carrier payout reference / TID:');if(ref===null||!ref.trim())return;try{await updateRow(TABLE_WITHDRAWS,id,{status:'Paid',carrierPayoutRef:ref.trim()});toast('Withdrawal marked approved.');await refreshAdminData()}catch(e){toast('Withdrawal update failed: '+e.message)}}
+  async function rejectWithdrawal(id){const reason=prompt('Mandatory rejection reason:');if(reason===null||!reason.trim())return;try{await updateRow(TABLE_WITHDRAWS,id,{status:'Rejected',rejectionReason:reason.trim()});toast('Withdrawal rejected.');await refreshAdminData()}catch(e){toast('Withdrawal update failed: '+e.message)}}
+  window.approveWithdrawal=approveWithdrawal;window.rejectWithdrawal=rejectWithdrawal;
+  window.setWdFilter=x=>{state.wdFilter=x;document.querySelectorAll('[id^="wdFilter-"]').forEach(b=>b.classList.toggle('active',b.id==='wdFilter-'+x));renderWithdrawals()};
+
+  function renderUsers(){const q=(document.getElementById('custSearchInput')?.value||'').toLowerCase();const rows=state.rows.profiles.filter(r=>JSON.stringify(r).toLowerCase().includes(q));const c=document.getElementById('userCardsContainer');if(!c)return;c.innerHTML=rows.map(r=>`<div class="table-card" style="padding:18px;cursor:pointer" onclick="openUser('${esc(idOf(r))}')"><div style="display:flex;justify-content:space-between"><strong>${esc(val(r,'username','name')||'User')}</strong><span>${esc(val(r,'accountStatus','status')||'active')}</span></div><div style="font-size:11px;color:var(--text-muted);margin-top:8px">${esc(val(r,'phone')||'—')}<br>ID: ${esc(val(r,'authUserId')||idOf(r))}<br>Referral: ${esc(val(r,'referralCode')||'—')}</div></div>`).join('')||'<div class="table-card" style="padding:20px">No users found.</div>'}
+  window.renderUserCards=renderUsers;
+  window.setUserFilter=x=>{state.userFilter=x;renderUsers()};
+  window.openUser=id=>{const r=state.rows.profiles.find(x=>idOf(x)===id);if(!r)return;state.selectedUser=r;document.getElementById('modalUsername').textContent=val(r,'username','name')||'User';document.getElementById('modalUserPhone').textContent=val(r,'phone')||'—';document.getElementById('modalUserId').textContent=val(r,'authUserId')||id;document.getElementById('modalUserRef').textContent=val(r,'referralCode')||'—';document.getElementById('modalUserReferredBy').textContent=val(r,'referredByUserId')||'—';openModal('userDetailsModal')};
+  window.toggleBlockCurrentUser=async()=>{if(!state.selectedUser)return;const cur=String(val(state.selectedUser,'accountStatus','status')||'active').toLowerCase();try{await updateRow(TABLE_PROFILES,idOf(state.selectedUser),{accountStatus:cur==='blocked'?'active':'blocked'});closeModal('userDetailsModal');await refreshAdminData()}catch(e){toast(e.message)}};
+  window.togglePinCurrentUser=async()=>{if(!state.selectedUser)return;try{await updateRow(TABLE_PROFILES,idOf(state.selectedUser),{pinned:!Boolean(state.selectedUser.pinned)});await refreshAdminData()}catch(e){toast(e.message)}};
+  window.saveUserBalanceAdjustments=async()=>{if(!state.selectedUser)return;const reason=document.getElementById('editBalanceReasonInput')?.value.trim();if(!reason)return toast('Adjustment reason is required.');const uid=val(state.selectedUser,'authUserId');const w=state.rows.wallets.find(x=>String(val(x,'userId'))===String(uid));if(!w)return toast('Wallet row not found.');const data={rechargeBalance:Number(document.getElementById('editRechargeBalInput').value||0),withdrawableBalance:Number(document.getElementById('editWithdrawableBalInput').value||0),lockedBalance:Number(document.getElementById('editLockedBalInput').value||0)};try{await updateRow(TABLE_WALLETS,idOf(w),data);await createRow(TABLE_AUDIT_LOGS,{adminId:ADMIN_AUTH_ID,action:'ADMIN_ADJUSTMENT',entityType:'wallet',targetId:idOf(w),note:reason,createdAt:new Date().toISOString()});toast('Wallet changes saved.');closeModal('userDetailsModal');await refreshAdminData()}catch(e){toast(e.message)}};
+
+  function renderLedger(){const q=(document.getElementById('ledgerSearchInput')?.value||'').toLowerCase();let rows=state.rows.ledger.filter(r=>state.ledgerFilter==='all'||String(val(r,'type','transactionType')).toUpperCase()===state.ledgerFilter);rows=rows.filter(r=>JSON.stringify(r).toLowerCase().includes(q)).sort((a,b)=>String(val(b,'$createdAt','createdAt')).localeCompare(String(val(a,'$createdAt','createdAt'))));const b=document.getElementById('ledgerTableBody');if(!b)return;b.innerHTML=rows.map(r=>`<tr><td>${esc(val(r,'$createdAt','createdAt')||'—')}</td><td>${esc(val(r,'type','transactionType')||'—')}</td><td>${esc(val(r,'username','userName','userId')||'—')}</td><td>${esc(val(r,'reference','referenceId','tid','idempotencykey')||'—')}</td><td>${money(val(r,'amount'))}</td><td>${esc(val(r,'description','note')||'—')}</td><td>${esc(val(r,'status')||'—')}</td></tr>`).join('')||'<tr><td colspan="7">No ledger records found.</td></tr>'}
+  window.renderLedgerTable=renderLedger;window.setLedgerFilter=x=>{state.ledgerFilter=x;renderLedger()};
+  window.exportLedgerCSV=()=>{const rows=state.rows.ledger;const heads=['timestamp','type','user','reference','amount','description','status'];const csv=[heads.join(','),...rows.map(r=>heads.map(k=>JSON.stringify(k==='timestamp'?val(r,'$createdAt','createdAt'):k==='type'?val(r,'type','transactionType'):k==='user'?val(r,'username','userName','userId'):k==='reference'?val(r,'reference','referenceId','tid','idempotencykey'):k==='amount'?val(r,'amount'):k==='description'?val(r,'description','note'):val(r,'status'))).join(','))].join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='circola-master-ledger.csv';a.click()};
+
+  window.savePaymentRecipients=async()=>{try{const data={mtnAccountName:document.getElementById('mtnAccountName').value,mtnAccountNumber:document.getElementById('mtnAccountNumber').value,mtnInstructions:document.getElementById('mtnInstructions').value,airtelAccountName:document.getElementById('airtelAccountName').value,airtelAccountNumber:document.getElementById('airtelAccountNumber').value,airtelInstructions:document.getElementById('airtelInstructions').value,updatedAt:new Date().toISOString()};const r=state.rows.recipients[0];if(r)await updateRow(TABLE_PAYMENT_RECIPIENTS,idOf(r),data);else await createRow(TABLE_PAYMENT_RECIPIENTS,data);toast('Payment recipients saved.');await refreshAdminData()}catch(e){toast(e.message)}};
+  window.saveAppSettings=async()=>{try{const data={communityUrl:document.getElementById('settingCommunityUrl').value,banner:document.getElementById('settingBanner').value,updatedAt:new Date().toISOString()};const r=state.rows.settings[0];if(r)await updateRow(TABLE_APPSETTINGS,idOf(r),data);else await createRow(TABLE_APPSETTINGS,data);toast('App settings saved.');await refreshAdminData()}catch(e){toast(e.message)}};
+
+  async function refreshAdminData(){try{await requireAdmin();const [profiles,wallets,ledger,purchases,deposits,withdrawals,commissions,audit,recipients,settings]=await Promise.all([listRows(TABLE_PROFILES),listRows(TABLE_WALLETS),listRows(TABLE_LEDGER),listRows(TABLE_PURCHASES),listRows(TABLE_DEPOSITS),listRows(TABLE_WITHDRAWS),listRows(TABLE_COMMISSIONS),listRows(TABLE_AUDIT_LOGS),listRows(TABLE_PAYMENT_RECIPIENTS),listRows(TABLE_APPSETTINGS)]);Object.assign(state.rows,{profiles,wallets,ledger,purchases,deposits,withdrawals,commissions,audit,recipients,settings});
+    const pendingDep=deposits.filter(r=>String(val(r,'status','transactionStatus')).toLowerCase()==='pending');const pendingWd=withdrawals.filter(r=>String(val(r,'status','transactionStatus')).toLowerCase()==='pending');const approvedDep=deposits.filter(r=>['approved','paid','completed'].includes(String(val(r,'status','transactionStatus')).toLowerCase()));const approvedWd=withdrawals.filter(r=>['paid','approved','completed'].includes(String(val(r,'status','transactionStatus')).toLowerCase()));const depSum=approvedDep.reduce((a,r)=>a+Number(val(r,'amount','depositAmount','grossAmount')||0),0);const wdGross=approvedWd.reduce((a,r)=>a+Number(val(r,'amount','withdrawalAmount','grossAmount')||0),0);
+    const set=(id,text)=>{const e=document.getElementById(id);if(e)e.textContent=text};set('pendingDepCount',pendingDep.length);set('pendingWdCount',pendingWd.length);set('kpiCustomers',profiles.length);set('kpiCustomersMeta',profiles.filter(r=>String(val(r,'accountStatus','status')).toLowerCase()==='active').length+' active profiles');set('kpiPendingDeposits',pendingDep.length);set('kpiPendingDepositsUGX',money(pendingDep.reduce((a,r)=>a+Number(val(r,'amount','depositAmount')||0),0))+' awaiting review');set('kpiPendingWithdrawals',pendingWd.length);set('kpiPendingWithdrawalsUGX',money(pendingWd.reduce((a,r)=>a+Number(val(r,'amount','withdrawalAmount')||0),0))+' awaiting payout');set('sumApprovedDepositsUGX',money(depSum));set('sumApprovedDepositsCount',approvedDep.length+' deposits completed');set('sumApprovedWdGrossUGX',money(wdGross));set('sumApprovedWdCount',approvedWd.length+' payouts disbursed');set('sumApprovedTaxUGX',money(wdGross*.05));set('sumNetPlatformFlowUGX','+'+money(depSum-wdGross));set('depSummaryApproved',money(depSum));set('depSummaryPending',pendingDep.length+' requests');set('depSummaryRejected',deposits.filter(r=>String(val(r,'status')).toLowerCase()==='rejected').length+' rejected');set('wdSummaryGross',money(wdGross));set('wdSummaryTax',money(wdGross*.05));set('wdSummaryNet',money(wdGross*.95));set('kpiActiveContracts',purchases.filter(r=>String(val(r,'status')).toLowerCase()==='active').length);
+    renderDeposits();renderWithdrawals();renderUsers();renderLedger();
+    if(recipients[0]){const r=recipients[0];for(const [id,keys] of Object.entries({mtnAccountName:['mtnAccountName'],mtnAccountNumber:['mtnAccountNumber'],mtnInstructions:['mtnInstructions'],airtelAccountName:['airtelAccountName'],airtelAccountNumber:['airtelAccountNumber'],airtelInstructions:['airtelInstructions']})){const e=document.getElementById(id);if(e)e.value=val(r,...keys)||e.value}}
+    if(settings[0]){document.getElementById('settingCommunityUrl').value=val(settings[0],'communityUrl','whatsappUrl')||'';document.getElementById('settingBanner').value=val(settings[0],'banner','bannerText')||''}
+    renderAudit();toast('Admin data synchronized.');
+  }catch(e){console.error(e);toast('Admin sync failed: '+e.message)}}
+  function renderAudit(){const b=document.getElementById('auditTableBody');if(!b)return;b.innerHTML=state.rows.audit.sort((a,b)=>String(val(b,'$createdAt','createdAt')).localeCompare(String(val(a,'$createdAt','createdAt')))).map(r=>`<tr><td>${esc(val(r,'$createdAt','createdAt')||'—')}</td><td>${esc(val(r,'adminId')||'—')}</td><td>${esc(val(r,'action')||'—')}</td><td>${esc(val(r,'entityType')||'—')}</td><td>${esc(val(r,'targetId')||'—')}</td><td>${esc(val(r,'note','changes')||'—')}</td></tr>`).join('')||'<tr><td colspan="6">No audit records found.</td></tr>'}
+  window.refreshAdminData=refreshAdminData;
+  window.addEventListener('DOMContentLoaded',async()=>{
+    try{
+      const account=await getCurrentAccount();
+      if(account && account.$id===ADMIN_AUTH_ID){ document.body.classList.remove('app-locked'); document.getElementById('adminLoginScreen').style.display='none'; await refreshAdminData(); }
+    }catch(_){ /* No active session: keep the visible login screen. */ }
+  });
+})();
+</script>
+</body>
+</html>
